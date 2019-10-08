@@ -8,6 +8,7 @@ require 'rspec/rails'
 
 RSpec.configure do |config|
   config.include Devise::Test::ControllerHelpers, type: :controller
+  include ActionDispatch::TestProcess
   config.include Devise::Test::ControllerHelpers, type: :view
 end
 # Add additional requires below this line. Rails is not loaded until this point!
