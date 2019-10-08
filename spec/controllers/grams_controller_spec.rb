@@ -35,7 +35,7 @@ RSpec.describe GramsController, type: :controller do
         delete :destroy, params: { id: 'SPACEDUCK' }
         expect(response).to have_http_status(:not_found)
       end
-
+  end
 
     describe "grams#update action" do
       it "shouldn't let users who didn't create the gram update it" do
@@ -164,7 +164,13 @@ RSpec.describe GramsController, type: :controller do
         user = FactoryBot.create(:user)
         sign_in user
 
-        post :create, params: { gram: { message: 'Hello!' } }
+        post :create, params: {
+          gram: {
+            message: 'Hello!',
+            picture: fixture_file_upload("/picture.png", 'image/png')
+          }
+        }
+
         expect(response).to redirect_to root_path
 
         gram = Gram.last
@@ -182,6 +188,5 @@ RSpec.describe GramsController, type: :controller do
         expect(gram_count).to eq Gram.count
     end
 
-    end
   end
 end
