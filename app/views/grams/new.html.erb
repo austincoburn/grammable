@@ -1,6 +1,7 @@
 <h1>This is where the new form will be</h1>
 
 <%= simple_form_for @gram do |f| %>
-    <% f.input :message %>
-    <% f.submit "Post!" %>
+    <%= f.input :message %>
+    <%= f.input :picture %>
+    <%= f.submit "Post!" %>
 <% end %>
