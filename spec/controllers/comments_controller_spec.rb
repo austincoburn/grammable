@@ -3,13 +3,12 @@ require 'rails_helper'
 RSpec.describe CommentsController, type: :controller do
     describe "comments#create action" do
       it "should allow users to create comments on grams" do
-        gram = FactoryBot.create(:gram)
+       gram = FactoryBot.create(:gram)
 
         user = FactoryBot.create(:user)
         sign_in user
 
-        post :create, params: { gram_id: gram.id, comment: {message: 'awesome gram' } }
-
+        post :create, params: { gram_id: gram.id, comment: { message: 'awesome gram' } }
 
         expect(response).to redirect_to root_path
         expect(gram.comments.length).to eq 1
@@ -28,7 +27,6 @@ RSpec.describe CommentsController, type: :controller do
       sign_in user
       post :create, params: { gram_id: 'YOLOSWAG', comment: { message: 'awesome gram' } }
       expect(response).to have_http_status :not_found
-
     end
   end
 end
